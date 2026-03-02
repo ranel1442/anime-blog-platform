@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/ranel/Desktop/Project/FullStack-Project/Anime-forum/anime-blog-client/src/app/page.js"],"sourcesContent":["export default function Home() {\n  return (\n    <main className=\"min-h-screen bg-slate-50 flex flex-col items-center justify-center p-8\">\n      <h1 className=\"text-5xl font-bold text-indigo-600 mb-4 tracking-tight\">\n        ברוכים הבאים לבלוג האנימה! ⛩️\n      </h1>\n      <p className=\"text-xl text-slate-600\">\n        הפרונטאנד שלנו מחובר ומוכן לעבודה.\n      </p>\n    </main>\n  );\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAK,WAAU;;0BACd,8OAAC;gBAAG,WAAU;0BAAyD;;;;;;0BAGvE,8OAAC;gBAAE,WAAU;0BAAyB;;;;;;;;;;;;AAK5C"}}]
+}
