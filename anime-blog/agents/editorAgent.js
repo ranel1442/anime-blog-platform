@@ -59,8 +59,10 @@ async function translateAndEditNews(newsItem, retries = 3) {
 
     } catch (error) {
       if (error.status === 503 && attempt < retries) {
-        console.warn(`⚠️ שרת ה-API עמוס. ממתין ${attempt * 2} שניות ומנסה שוב...`);
-        await sleep(attempt * 2000); 
+        // חישוב זמן ההמתנה החדש: 15 שניות בניסיון ראשון, 30 שניות בניסיון שני
+        const waitTimeInSeconds = attempt * 15;
+        console.warn(`⚠️ שרת ה-API עמוס. ממתין ${waitTimeInSeconds} שניות ומנסה שוב...`);
+        await sleep(waitTimeInSeconds * 1000); 
       } else {
         console.error('❌ שגיאה בסוכן העריכה:', error.message);
         return null; 
