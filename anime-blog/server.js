@@ -13,7 +13,10 @@ const app = express();
 app.use(express.json());
 
 // הפעלת הפונקציה שמתחברת ל-MongoDB
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://anime-blog-platform-vc67.vercel.app'],
+    credentials: true
+}));
 app.use(express.json());
 
 connectDB();
