@@ -451,8 +451,7 @@ return (
 
                 {activeTab === 'reels' ? (
                    <div className="w-full md:w-56 flex flex-col gap-2">
-                     <video src={`http://localhost:5000/${post.reelVideoUrl.split('temp_reels\\')[1] || post.reelVideoUrl.split('temp_reels/')[1] || post.reelVideoUrl}`} controls className="w-full h-auto rounded-xl border border-zinc-700 bg-black"></video>
-                   </div>
+                    <video src={`${process.env.NEXT_PUBLIC_API_URL.replace('/api', '')}/${post.reelVideoUrl.split('temp_reels\\')[1] || post.reelVideoUrl.split('temp_reels/')[1] || post.reelVideoUrl}`} controls className="w-full h-auto rounded-xl border border-zinc-700 bg-black"></video>                   </div>
                 ) : (
                   post.coverImage && !editingPostId && (
                     <img src={post.coverImage} alt={post.title} className="w-full md:w-56 h-40 object-cover rounded-2xl border border-zinc-800 shadow-md" />
