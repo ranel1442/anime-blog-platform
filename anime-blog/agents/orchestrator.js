@@ -47,7 +47,7 @@ async function runAutomationPipeline() {
         };
 
         // 5. שמירה במסד הנתונים
-        const response = await axios.post('http://localhost:5000/api/posts', postData);
+        const response = await axios.post('https://anime-blog-platform.onrender.com/api/posts', postData);
         console.log(`✅ הפוסט נשלח לשרת. סטטוס: ${response.data.message || 'נוצר בהצלחה'}`);
       }
     } catch (error) {
