@@ -48,7 +48,8 @@ async function translateAndEditNews(newsItem, retries = 3) {
 
       // 3. קריאה נכונה לספרייה החדשה עם מודל שקיים באמת
       const response = await ai.models.generateContent({
-          model: 'gemini-3-flash-preview',
+          model: 'gemini-1.5-flash',
+          // model: 'gemini-3-flash-preview',
           contents: prompt,
       });
 
