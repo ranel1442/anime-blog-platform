@@ -3,14 +3,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // 1. משיכת המפתחות ופיצולם למערך
-// מניח שבקובץ ה-.env שלך המשתנה מוגדר ככה: 
-// GEMINI_API_KEY="key1,key2,key3,key4"
 const apiKeys = process.env.GEMINI_API_KEY.split(',');
 
-// 2. משתנה גלובלי (ברמת הקובץ) שיעקוב אחרי התור של המפתחות
-let currentKeyIndex = 0;
+// 2. משתנה גלובלי - מתחיל מ-3 (מפתח רביעי)
+let currentKeyIndex = 3; 
 
-export async function processArticleForReel(articleData) {
+// פונקציית עזר להשהייה
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+export async function processArticleForReel(articleData, modelName = 'gemini-2.5-flash') {
     const { title, content, imageUrl } = articleData;
 
     console.log(`[Reel Generator] מתחיל עיבוד לכתבה: ${title}`);
@@ -19,14 +20,15 @@ export async function processArticleForReel(articleData) {
     const activeKey = apiKeys[currentKeyIndex];
     console.log(`[Reel Generator] משתמש במפתח API מספר: ${currentKeyIndex + 1} מתוך ${apiKeys.length}`);
 
-    // קידום האינדקס לפעם הבאה. מודולו (%) דואג שכשנגיע לסוף המערך, נחזור ל-0.
+    // קידום האינדקס לפעם הבאה.
     currentKeyIndex = (currentKeyIndex + 1) % apiKeys.length;
 
-    // אתחול הקליינט של ג'מיני עם המפתח הספציפי שנבחר לסיבוב הזה
+    // אתחול הקליינט של ג'מיני
     const genAI = new GoogleGenerativeAI(activeKey);
 
+    // נשתמש בשם המודל שמועבר מבחוץ (ברירת מחדל: gemini-2.5-flash)
     const model = genAI.getGenerativeModel({
-        model: 'gemini-3-flash-preview',
+        model: modelName,
         generationConfig: {
             responseMimeType: "application/json",
             temperature: 0.7,
@@ -57,6 +59,8 @@ export async function processArticleForReel(articleData) {
         תוכן: ${content}
         `;
 
+    // כאן, ה-Retry מטופל בקובץ הראשי (reelsOrchestrator), אז אנחנו פשוט מנסים פעם אחת
+    // וזורקים שגיאה למעלה אם נכשל
     try {
         const result = await model.generateContent(prompt);
         const responseText = result.response.text();
@@ -71,6 +75,6 @@ export async function processArticleForReel(articleData) {
 
     } catch (error) {
         console.error("[Reel Generator] שגיאה ביצירת התוכן:", error.message);
-        throw error;
+        throw error; // זורקים הלאה ל-orchestrator כדי שיטפל בהמתנה!
     }
 }
