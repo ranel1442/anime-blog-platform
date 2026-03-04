@@ -38,7 +38,7 @@ export async function generateMayaVideoFree(audioFilename, imageFilename, videoF
                         input: {
                             source_image: imageUri,
                             driven_audio: audioUri,
-                            use_enhancer: true, // מפעיל את משפר הפנים לאיכות גבוהה (GFPGAN)
+                            use_enhancer: false, // מפעיל את משפר הפנים לאיכות גבוהה (GFPGAN)
                             still_mode: true,   // שומר על יציבות הגוף ומתמקד בראש
                             preprocess: "full"  // חותך ומתאים את התמונה בצורה אופטימלית
                         }
