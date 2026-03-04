@@ -31,13 +31,13 @@ export async function generateMayaVideoFree(audioFilename, imageFilename, videoF
     try {
         console.log("⏳ [Video Generator] שולח נתונים למודל LivePortrait... (זה ייקח כ-15-20 שניות)");
                 
-        // קריאה למודל LivePortrait החדש
+            // קריאה למודל zedge/live-portrait המעודכן
         const outputUrl = await replicate.run(
-            "lucataco/liveportrait:9d15024b801452243d6e520eb070cf613c72b53589b2512a86ff43309a6c7ec6",
+            "zedge/live-portrait:9f8f5880eb2db3778cc689fa00ee6e090fa3d8388ac278b608d4cc526a44c5df",
             {
                 input: {
-                    image: imageUri, // שים לב: שינינו מ-source_image
-                    audio: audioUri  // שים לב: שינינו מ-driven_audio
+                    source_image: imageUri, // שים לב: שינינו ל-source_image
+                    driving_input: audioUri // שים לב: שינינו ל-driving_input
                 }
             }
         );
