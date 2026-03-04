@@ -30,7 +30,7 @@ export async function generateMayaVoice(text, outputFilename) {
             input: { text: text },
             voice: { 
                 languageCode: 'he-IL', 
-                name: 'he-IL-Neural2-A' // קול נשי איכותי (Neural2) בעברית
+                name: 'he-IL-Wavenet-A' // קול נשי איכותי (WaveNet) בעברית
             },
             audioConfig: { 
                 audioEncoding: 'MP3',
