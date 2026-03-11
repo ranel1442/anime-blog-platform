@@ -5,8 +5,8 @@ export default function ContactPage() {
   // ==========================================
   // ⚙️ הגדרות קישורים (הכנס את הפרטים שלך כאן)
   // ==========================================
-  const WHATSAPP_NUMBER = "972500000000"; // הכנס את המספר שלך (ללא פלוס, מתחיל ב-972)
-  const INSTAGRAM_HANDLE = "your_page_name"; // הכנס את שם המשתמש באינסטגרם
+  const WHATSAPP_NUMBER = "972552655664"; // הכנס את המספר שלך (ללא פלוס, מתחיל ב-972)
+  const INSTAGRAM_HANDLE = "maya.anime.blog"; // הכנס את שם המשתמש באינסטגרם
   
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
   const instagramUrl = `https://instagram.com/${INSTAGRAM_HANDLE}`;
