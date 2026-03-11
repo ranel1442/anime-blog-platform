@@ -10,11 +10,13 @@ const app = express();
 // Middlewares
 // השורה הזו סופר חשובה! היא מאפשרת לשרת שלנו להבין בקשות שמגיעות בפורמט JSON
 // (הסוכנים שלנו ישלחו את הפוסטים בפורמט הזה)
-app.use(express.json());
 
 // הפעלת הפונקציה שמתחברת ל-MongoDB
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://anime-blog-platform-vc67.vercel.app'],
+    origin: [
+        'http://localhost:3000', 
+        'https://anime-blog-platform.vercel.app' // הכתובת החדשה והנכונה
+    ],
     credentials: true
 }));
 app.use(express.json());
