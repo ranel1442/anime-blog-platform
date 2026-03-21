@@ -1,21 +1,30 @@
-# 🎌 AnimeBlog - AI-Powered Anime Community
+# 🎌 AnimeBlog - AI-Powered Auto-Pilot Anime Community
 
-An innovative, full-stack platform for anime enthusiasts, featuring community discussions, user profiles, an automated AI-driven news feed, and an integrated AI Reel Generator.
+An innovative, full-stack platform for anime enthusiasts. It goes far beyond a standard blog by operating as a **fully automated, AI-driven content machine**. From scraping breaking news to generating viral-ready Instagram Reels, the platform runs on auto-pilot while also hosting a vibrant, interactive community.
 
 ## ✨ Key Features
 
-* **🤖 AI News Agents**: Automated background agents that fetch, summarize, and publish the latest anime news and updates.
-* **🎬 AI-Powered Anime Reel Generator**: A complete pipeline inside the Admin Panel to convert articles into short videos (Reels) for social media.
-  * **Smart Scripting**: Summarizes articles into punchy short-form scripts using **Google Gemini**.
-  * **Text-to-Speech (TTS)**: Converts scripts to high-quality audio using **Azure TTS**.
-  * **Lip-Sync & Animation**: Animates a virtual presenter using **SadTalker & GFPGAN** (powered by **Replicate**'s GPU servers) to match the audio perfectly.
-  * **Presenter Management**: Upload new presenter avatars, select via dropdown, and preview in a live modal.
-  * **Smart File Management**: Downloads generated MP4/MP3 files and safely cleans up local `temp_reels` storage and database records.
-* **🛡️ Advanced Admin Panel**: Full control over content. Admins can approve/reject AI posts, edit content, manage tags, feature posts on the carousel, and trigger AI agents manually.
-* **👥 Interactive Community**: A dedicated forum where users can create posts, comment, and reply. Includes full CRUD capabilities with permission checks.
-* **🔐 Secure Authentication**: Seamless Google OAuth integration using JWT for secure session management.
-* **🖼️ Cloud & Local Storage**: Real-time profile picture and post image uploads powered by Cloudinary, plus secure local storage (`multer`, `fs`, `path`) for temporary video rendering.
-* **🎨 Modern UI/UX**: Fully responsive Dark Mode design using Tailwind CSS and Lucide React icons.
+### 🤖 100% Automated Content Pipeline
+* **Autonomous AI News Agents**: Background agents continuously scrape top anime news sources, summarize the information, and autonomously write and format comprehensive Hebrew articles.
+* **Creative AI Metadata**: The AI automatically generates click-worthy titles, relevant tags, and highly detailed prompts for AI-generated article thumbnails—all without human intervention.
+
+### 📱 Zero-Click Instagram Reels Generation
+A complete, automated pipeline that converts any article into a highly engaging, fully produced short video for social media (Instagram Reels / TikTok).
+* **Smart Scripting & Copywriting**: **Google Gemini** acts as a social media manager, summarizing the article into a punchy 60-second video script AND generating the exact caption, call-to-action, and hashtags for the Instagram post description.
+* **Text-to-Speech (TTS)**: Converts the AI script into professional, energetic audio using **Azure TTS**.
+* **Lip-Sync & Animation**: Animates a virtual presenter (Maya) using **SadTalker & GFPGAN** (powered by **Replicate**'s GPU servers) to match the audio perfectly.
+* **Presenter Management**: Admins can upload new presenter avatars, select them via a dropdown, and preview them in a live modal.
+* **Smart File Management**: Automatically downloads generated MP4/MP3 files from the cloud, links them to the database, and safely cleans up local `temp_reels` storage to optimize server resources.
+
+### 🛡️ Advanced Admin Panel
+* Full control over the AI's output. Admins can review, approve, or reject AI-generated posts.
+* Edit content, manage tags, feature specific posts on the homepage carousel, and manually trigger AI agents when breaking news hits.
+
+### 👥 Interactive Community & Modern UI
+* **Community Forum**: A dedicated space where users can create posts, comment, and reply. Includes full CRUD capabilities with strict permission checks.
+* **Modern UI/UX**: Fully responsive Dark Mode design built with **Tailwind CSS** and **Lucide React** icons, providing a sleek, intuitive user experience.
+* **Secure Authentication**: Seamless Google OAuth integration using JWT for secure session management.
+* **Cloud & Local Storage**: Real-time profile picture and cover image uploads powered by **Cloudinary**, alongside secure local storage solutions (`multer`, `fs`, `path`) for temporary video rendering.
 
 ## 🛠️ Technology Stack
 
