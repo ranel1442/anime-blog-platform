@@ -13,12 +13,18 @@ export const viewport = {
 export const metadata = {
   title: 'Anime Blog',
   description: 'חדשות אנימה וקהילה חמה',
-  manifest: '/manifest.json', // קישור לקובץ ה-manifest שיצרנו בתיקיית public
+  // אפשר להשאיר את זה, אבל התגית למטה היא מה שבאמת תעשה את העבודה
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="he" dir="rtl" suppressHydrationWarning>
+      {/* הוספנו את תגית ה-head הזו כדי להכריח את הטעינה של ה-manifest */}
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+
       <body suppressHydrationWarning>
 
         {/* הרכיב שרושם את ה-Service Worker כדי לאפשר התקנה */}
