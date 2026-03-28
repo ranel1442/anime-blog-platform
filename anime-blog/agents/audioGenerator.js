@@ -1,62 +1,62 @@
-// הקריינית של  אמאזון
-import fs from 'fs';
-import path from 'path';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-// הייבוא החדש של אמזון במקום גוגל
-import { PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
+// // הקריינית של  אמאזון
+// import fs from 'fs';
+// import path from 'path';
+// import dotenv from 'dotenv';
+// import { fileURLToPath } from 'url';
+// // הייבוא החדש של אמזון במקום גוגל
+// import { PollyClient, SynthesizeSpeechCommand } from "@aws-sdk/client-polly";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+// dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-// הגדרת החיבור לאמזון עם המפתחות מקובץ ה-.env
-const pollyClient = new PollyClient({
-    region: process.env.AWS_REGION || 'us-east-1',
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
-});
+// // הגדרת החיבור לאמזון עם המפתחות מקובץ ה-.env
+// const pollyClient = new PollyClient({
+//     region: process.env.AWS_REGION || 'us-east-1',
+//     credentials: {
+//         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+//     }
+// });
 
-export async function generateMayaVoice(text, outputFilename) {
-    console.log(`[Audio Generator] מתחיל לייצר סאונד דרך Amazon Polly...`);
+// export async function generateMayaVoice(text, outputFilename) {
+//     console.log(`[Audio Generator] מתחיל לייצר סאונד דרך Amazon Polly...`);
     
-    const outputPath = path.resolve(__dirname, '../temp_reels', outputFilename);
+//     const outputPath = path.resolve(__dirname, '../temp_reels', outputFilename);
 
-    if (!fs.existsSync(path.dirname(outputPath))) {
-        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-    }
+//     if (!fs.existsSync(path.dirname(outputPath))) {
+//         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+//     }
 
-    try {
-        // הגדרת הפרמטרים לאמזון פולי
-        const params = {
-            Text: text,
-            OutputFormat: "mp3",
-            VoiceId: "Hila", // הקול הנשי הסטנדרטי בעברית של אמזון
-            LanguageCode: "he-IL"
-        };
+//     try {
+//         // הגדרת הפרמטרים לאמזון פולי
+//         const params = {
+//             Text: text,
+//             OutputFormat: "mp3",
+//             VoiceId: "Hila", // הקול הנשי הסטנדרטי בעברית של אמזון
+//             LanguageCode: "he-IL"
+//         };
 
-        // שליחת הבקשה לאמזון
-        const command = new SynthesizeSpeechCommand(params);
-        const response = await pollyClient.send(command);
+//         // שליחת הבקשה לאמזון
+//         const command = new SynthesizeSpeechCommand(params);
+//         const response = await pollyClient.send(command);
 
-        // אמזון מחזירה "זרם" (Stream) של מידע, אנחנו הופכים אותו ל-Buffer כדי לשמור כקובץ
-        const audioArray = await response.AudioStream.transformToByteArray();
-        const audioBuffer = Buffer.from(audioArray);
+//         // אמזון מחזירה "זרם" (Stream) של מידע, אנחנו הופכים אותו ל-Buffer כדי לשמור כקובץ
+//         const audioArray = await response.AudioStream.transformToByteArray();
+//         const audioBuffer = Buffer.from(audioArray);
         
-        // שמירת הקובץ בדיוק כמו שעשית קודם
-        fs.writeFileSync(outputPath, audioBuffer);
+//         // שמירת הקובץ בדיוק כמו שעשית קודם
+//         fs.writeFileSync(outputPath, audioBuffer);
 
-        console.log(`[Audio Generator] קובץ האודיו של מאיה נשמר בהצלחה: ${outputPath}`);
-        return outputPath;
+//         console.log(`[Audio Generator] קובץ האודיו של מאיה נשמר בהצלחה: ${outputPath}`);
+//         return outputPath;
 
-    } catch (error) {
-        console.error("❌ [Audio Generator] שגיאת מערכת מול Amazon:", error);
-        throw error;
-    }
-}
+//     } catch (error) {
+//         console.error("❌ [Audio Generator] שגיאת מערכת מול Amazon:", error);
+//         throw error;
+//     }
+// }
 
 
 
@@ -79,74 +79,74 @@ export async function generateMayaVoice(text, outputFilename) {
 // הקריינית של גוגל
 
 
-// import fs from 'fs';
-// import path from 'path';
-// import dotenv from 'dotenv';
-// import { fileURLToPath } from 'url';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
-// // סידור נתיבים חכם לפי מבנה הפרויקט שלך
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+// סידור נתיבים חכם לפי מבנה הפרויקט שלך
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// // משיכת משתני הסביבה מקובץ ה-.env שנמצא תיקייה אחת למעלה (בשורש)
-// dotenv.config({ path: path.resolve(__dirname, '../.env') });
+// משיכת משתני הסביבה מקובץ ה-.env שנמצא תיקייה אחת למעלה (בשורש)
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-// const API_KEY = process.env.GOOGLE_TTS_API_KEY;
+const API_KEY = process.env.GOOGLE_TTS_API_KEY;
 
-// export async function generateMayaVoice(text, outputFilename) {
-//     console.log(`[Audio Generator] מתחיל לייצר סאונד בחינם דרך Google Cloud TTS...`);
+export async function generateMayaVoice(text, outputFilename) {
+    console.log(`[Audio Generator] מתחיל לייצר סאונד בחינם דרך Google Cloud TTS...`);
     
-//     // הגדרת נתיב השמירה: תיקיית temp_reels בשורש הפרויקט
-//     const outputPath = path.resolve(__dirname, '../temp_reels', outputFilename);
+    // הגדרת נתיב השמירה: תיקיית temp_reels בשורש הפרויקט
+    const outputPath = path.resolve(__dirname, '../temp_reels', outputFilename);
 
-//     // יצירת התיקייה במידה והיא לא קיימת
-//     if (!fs.existsSync(path.dirname(outputPath))) {
-//         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-//     }
+    // יצירת התיקייה במידה והיא לא קיימת
+    if (!fs.existsSync(path.dirname(outputPath))) {
+        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    }
 
-//     try {
-//         const url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${API_KEY}`;
+    try {
+        const url = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${API_KEY}`;
         
-//         const requestBody = {
-//             input: { text: text },
-//             voice: { 
-//                 languageCode: 'he-IL', 
-//                 name: 'he-IL-Wavenet-A' // קול נשי איכותי (WaveNet) בעברית
-//             },
-//             audioConfig: { 
-//                 audioEncoding: 'MP3',
-//                 speakingRate: 1.0 // אפשר לשנות אם היא מדברת מהר/לאט מדי
-//             }
-//         };
+        const requestBody = {
+            input: { text: text },
+            voice: { 
+                languageCode: 'he-IL', 
+                name: 'he-IL-Wavenet-A' // קול נשי איכותי (WaveNet) בעברית
+            },
+            audioConfig: { 
+                audioEncoding: 'MP3',
+                speakingRate: 1.0 // אפשר לשנות אם היא מדברת מהר/לאט מדי
+            }
+        };
 
-//         // פנייה ישירה ל-API של גוגל
-//         const response = await fetch(url, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(requestBody)
-//         });
+        // פנייה ישירה ל-API של גוגל
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
 
-//         if (!response.ok) {
-//             const errorData = await response.json();
-//             throw new Error(`Google TTS API Error: ${JSON.stringify(errorData)}`);
-//         }
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Google TTS API Error: ${JSON.stringify(errorData)}`);
+        }
 
-//         const data = await response.json();
+        const data = await response.json();
         
-//         // גוגל מחזיר את האודיו כטקסט (Base64), אז אנחנו ממירים אותו לקובץ MP3 אמיתי
-//         const audioBuffer = Buffer.from(data.audioContent, 'base64');
-//         fs.writeFileSync(outputPath, audioBuffer);
+        // גוגל מחזיר את האודיו כטקסט (Base64), אז אנחנו ממירים אותו לקובץ MP3 אמיתי
+        const audioBuffer = Buffer.from(data.audioContent, 'base64');
+        fs.writeFileSync(outputPath, audioBuffer);
 
-//         console.log(`[Audio Generator] קובץ האודיו של מאיה נשמר בהצלחה: ${outputPath}`);
-//         return outputPath;
+        console.log(`[Audio Generator] קובץ האודיו של מאיה נשמר בהצלחה: ${outputPath}`);
+        return outputPath;
 
-//     } catch (error) {
-//         console.error("❌ [Audio Generator] שגיאת מערכת מול Google:", error);
-//         throw error;
-//     }
-// }
+    } catch (error) {
+        console.error("❌ [Audio Generator] שגיאת מערכת מול Google:", error);
+        throw error;
+    }
+}
 
 
 
